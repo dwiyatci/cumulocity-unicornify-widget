@@ -1,0 +1,67 @@
+---
+env:
+  browser: true
+  node: true
+  jasmine: true
+  protractor: true
+  jquery: true
+globals:
+  _: false
+  angular: false
+  d3: false
+  L: false
+  moment: false
+  module: false
+  inject: false
+  sinon: false
+  tentacle: false
+  async: true
+  common: true
+extends: airbnb-base
+parserOptions:
+  sourceType: script
+rules:
+  spaced-comment:
+  - error
+  - always
+  - line:
+      exceptions:
+      - /
+    markers:
+    - //////////
+  valid-jsdoc:
+  - error
+  - requireReturn: false
+  no-use-before-define:
+  - error
+  - functions: false
+  no-param-reassign:
+  - error
+  - props: false
+  strict:
+  - error
+  - function
+  comma-dangle:
+  - error
+  - never
+  prefer-destructuring:
+  - error
+  - VariableDeclarator:
+      array: true
+      object: true
+    AssignmentExpression:
+      array: false
+      object: false
+  - enforceForRenamedProperties: false
+  no-underscore-dangle: off
+  object-curly-newline: off
+  object-property-newline: off
+  function-paren-newline: off
+overrides:
+  - files:
+      - scripts/*.js
+      - karma.conf.js
+    excludedFiles:
+      - scripts/test-helper.js
+    parserOptions:
+      sourceType: module

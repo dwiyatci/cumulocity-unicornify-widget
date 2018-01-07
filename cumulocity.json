@@ -1,0 +1,7 @@
+{
+  "contextPath": "cont",
+  "name": "A container application",
+  "key": "containerapp-application-key",
+  "imports": [],
+  "noAppSwitcher": true
+}
