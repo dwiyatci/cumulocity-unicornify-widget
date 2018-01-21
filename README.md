@@ -30,7 +30,7 @@ $ yarn install:clean
 ```
 
 ## Usage
-Just give it a spin in your Cockpit app. Careful, it's addicted (you've been warned).
+Just give it a spin in your Cockpit app. Careful, it's addictive (you've been warned).
 
 ## Quicky up and running
 ```bash
