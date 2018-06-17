@@ -16,10 +16,7 @@ export const c8yUnicornifyWidget = {
 };
 
 /* @ngInject */
-function Controller(
-  this: angular.IController,
-  unicornifyService: any
-) {
+function Controller(this: angular.IController, unicornifyService: any) {
   const vm = this;
 
   _.assign(vm, {
@@ -48,8 +45,9 @@ function Controller(
     const deviceId = _.get(config, 'device.id');
 
     if (deviceId) {
-      unicornifyService.getDataFor({ source: deviceId })
-        .then((data: any) => { vm.data = data; });
+      unicornifyService.getDataFor({ source: deviceId }).then((data: any) => {
+        vm.data = data;
+      });
     }
   }
 }

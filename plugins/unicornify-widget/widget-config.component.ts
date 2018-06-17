@@ -12,9 +12,7 @@ export const c8yUnicornifyWidgetConfig = {
 };
 
 /* @ngInject */
-function Controller(
-  this: angular.IController
-) {
+function Controller(this: angular.IController) {
   const vm = this;
   const defaultConfig = {};
 

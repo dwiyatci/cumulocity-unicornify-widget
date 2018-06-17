@@ -36,8 +36,9 @@ function Controller(unicornifyService) {
     function onConfigChange(config) {
         const deviceId = _.get(config, 'device.id');
         if (deviceId) {
-            unicornifyService.getDataFor({ source: deviceId })
-                .then((data) => { vm.data = data; });
+            unicornifyService.getDataFor({ source: deviceId }).then((data) => {
+                vm.data = data;
+            });
         }
     }
 }

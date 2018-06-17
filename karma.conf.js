@@ -1,17 +1,19 @@
 const _ = require('lodash');
 const glob = require('glob');
 const { readJsonSync } = require('fs-extra');
-const {
-  join,
-  dirname
-} = require('path');
+const { join, dirname } = require('path');
 
 // const APP_CONTEXT_PATH = process.argv[4] || 'pocs';
 
 const pluginJsFiles = _(glob.sync('plugins/*/cumulocity.json'))
-  .reject(p => p.match(/plugins\/(_x|@c8y)/i))
+  .reject(p => p.match(/plugins\/(_x|@c8y)/))
+  .reject(
+    filename =>
+      !!filename.match(/plugins\/babel-polyfill/) &&
+      semver.gte(version, '8.19.8')
+  )
   .flatMap(manifestFile =>
-    _.map(readJsonSync(manifestFile).js, (jsFile) => {
+    _.map(readJsonSync(manifestFile).js, jsFile => {
       let baseDir = dirname(manifestFile);
 
       if (jsFile.match(/^(node_modules|bower_components)/i)) {
@@ -24,12 +26,12 @@ const pluginJsFiles = _(glob.sync('plugins/*/cumulocity.json'))
   .compact()
   .value();
 
-module.exports = (config) => {
+module.exports = config => {
   config.set({
     singleRun: true,
 
     files: [
-      'node_modules/cumulocity-ui-full/core{,_*}/main.js',
+      'node_modules/cumulocity-ui-build/core{,_*}/main.js',
       'node_modules/angular-mocks/angular-mocks.js',
       'scripts/test-helper.js',
       ...pluginJsFiles,
@@ -55,7 +57,10 @@ module.exports = (config) => {
       'scripts/test-helper.js': ['babel'],
 
       // Match files in all plugins subfolders except vendor/ or lib/.
-      'plugins/*/{*.js,!(vendor)/**/*.js,!(lib)/**/*.js}': ['c8y-pluginpath', 'babel'],
+      'plugins/*/{*.js,!(vendor)/**/*.js,!(lib)/**/*.js}': [
+        'c8y-pluginpath',
+        'babel'
+      ],
       'plugins/*/**/*.html': ['ng-html2js']
     },
 
@@ -84,12 +89,17 @@ module.exports = (config) => {
 
 function c8yPluginPathPreprocessor() {
   return (content, file, done) => {
-    done(content.replace(/:::PLUGIN_PATH:::/g, computePluginPath(file.originalPath)));
+    done(
+      content.replace(
+        /:::PLUGIN_PATH:::/g,
+        computePluginPath(file.originalPath)
+      )
+    );
   };
 }
 
 function computePluginPath(filepath) {
-  const [, pluginName] = (/plugins\/(.+?)\/+?/.exec(filepath));
+  const [, pluginName] = /plugins\/(.+?)\/+?/.exec(filepath);
   // const pluginPath = `${APP_CONTEXT_PATH}_${pluginName}`;
   const pluginPath = pluginName;
 

@@ -2,13 +2,7 @@
   "name": "Unicornify widget",
   "description": "Generates unicorn stamps and other kinds of happiness",
   "category": "Widget",
-  "ngModules": [
-    "c8y.pocs.unicornifyWidget"
-  ],
-  "js": [
-    "dist/entry.js"
-  ],
-  "css": [
-    "styles.css"
-  ]
+  "ngModules": ["c8y.pocs.unicornifyWidget"],
+  "js": ["dist/entry.js"],
+  "css": ["styles.css"]
 }

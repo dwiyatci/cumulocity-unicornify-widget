@@ -35,7 +35,7 @@ describe('c8y.pocs.unicornifyWidget: unicornifyService', () => {
       // c8yMeasurements = $injector.get('c8yMeasurements');
     });
 
-    it('should return correct data', (done) => {
+    it('should return correct data', done => {
       // given
       const filter: c8y.WidgetDataFilter = {};
 
@@ -46,14 +46,12 @@ describe('c8y.pocs.unicornifyWidget: unicornifyService', () => {
       // when
       // c8yMeasurements.list = c8yStubsHelper.createListMeasurementsFake(measurements);
 
-      dataService.getDataFor(filter)
-        .then((data) => {
-          // then
-          expect(data)
-            .toEqual(expectedData);
+      dataService.getDataFor(filter).then(data => {
+        // then
+        expect(data).toEqual(expectedData);
 
-          done();
-        });
+        done();
+      });
 
       $rootScope.$apply();
     });

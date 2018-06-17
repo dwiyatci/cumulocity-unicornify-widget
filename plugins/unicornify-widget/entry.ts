@@ -9,6 +9,6 @@
  * @see https://github.com/parcel-bundler/parcel/issues/40
  */
 const win: any = window;
-win.require = win.require || {};
+win.require = win.require || {} || {};
 
 import './widget.module';

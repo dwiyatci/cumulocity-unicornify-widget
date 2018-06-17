@@ -2,9 +2,10 @@
 env:
   browser: true
   node: true
-  jasmine: true
-  protractor: true
   jquery: true
+  jasmine: true
+  jest: true
+  protractor: true
 globals:
   _: false
   angular: false
@@ -17,10 +18,14 @@ globals:
   tentacle: false
   async: true
   common: true
-extends: airbnb-base
+extends:
+  - airbnb-base
+  - prettier
 parserOptions:
   sourceType: script
 rules:
+  semi:
+  - error
   spaced-comment:
   - error
   - always
@@ -28,7 +33,7 @@ rules:
       exceptions:
       - /
     markers:
-    - //////////
+    - "//////////"
   valid-jsdoc:
   - error
   - requireReturn: false
@@ -57,11 +62,14 @@ rules:
   object-curly-newline: off
   object-property-newline: off
   function-paren-newline: off
+  import/no-extraneous-dependencies:
+  - error
+  - peerDependencies: true
 overrides:
   - files:
-      - scripts/*.js
-      - karma.conf.js
+    - scripts/**/*.js
+    - karma.conf.js
     excludedFiles:
-      - scripts/test-helper.js
+    - scripts/test-helper.js
     parserOptions:
       sourceType: module

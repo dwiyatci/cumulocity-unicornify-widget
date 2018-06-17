@@ -8,5 +8,5 @@
  * @see https://github.com/parcel-bundler/parcel/issues/40
  */
 const win = window;
-win.require = win.require || {};
+win.require = win.require || {} || {};
 import './widget.module';

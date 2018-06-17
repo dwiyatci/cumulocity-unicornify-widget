@@ -28,18 +28,16 @@ describe('c8y.pocs.unicornifyWidget: unicornifyService', () => {
             // dependencies to be stubbed
             // c8yMeasurements = $injector.get('c8yMeasurements');
         });
-        it('should return correct data', (done) => {
+        it('should return correct data', done => {
             // given
             const filter = {};
             // const measurements = [];
             const expectedData = [];
             // when
             // c8yMeasurements.list = c8yStubsHelper.createListMeasurementsFake(measurements);
-            dataService.getDataFor(filter)
-                .then((data) => {
+            dataService.getDataFor(filter).then(data => {
                 // then
-                expect(data)
-                    .toEqual(expectedData);
+                expect(data).toEqual(expectedData);
                 done();
             });
             $rootScope.$apply();

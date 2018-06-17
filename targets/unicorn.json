@@ -10,9 +10,11 @@
     {
       "contextPath": "cockpit",
       "addImports": [
-        "core/babel-polyfill",
         "cont/unicornify-widget"
-      ]
+      ],
+      "options": {
+        "contentSecurityPolicy": null
+      }
     }
   ]
 }
